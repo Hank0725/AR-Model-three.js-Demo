@@ -4,8 +4,10 @@
       <b-card no-body class="overflow-hidden" style="max-width: 540px;">
         <b-row no-gutters>
           <b-col md="6">
-            <model-viewer src="./armodeldemo/src/assets/models/LittlestTokyo.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls></model-viewer>
-            <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
+
+            <model-viewer :src='getModelPath()' alt="A 3D model of an astronaut" auto-rotate camera-controls></model-viewer>
+            PATH:{{getModelPath()}}
+            <b-card-img src='./static/5F96800720E4E1603698695.jpeg' alt="Image" class="rounded-0"></b-card-img>
           </b-col>
           <b-col md="6">
           <b-card-body title="Horizontal Card">
@@ -18,18 +20,39 @@
         </b-row>
       </b-card>
 </div>
-    <!-- <model-viewer src="@/armodeldemo/src/assets/models/LittlestTokyo.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls></model-viewer> -->
   </div>
 </template>
 
 <script>
 import "@google/model-viewer"
+// import glb from './static/LittlestTokyo.glb'
+// import image from './static/5F96800720E4E1603698695.jpeg'
 
 export default {
   name: 'Model',
+  data: function() {
+    return {
+  
+      // images: image
+    }
+  },
   props: {
-    msg: String
-  }
+    msg: String,
+    modelKey:String
+  },
+  methods:
+  {
+    getModelPath() {
+      return this.$store.state.models[this.modelKey]["path"];
+    }
+  },
+  computed:
+  {
+  
+  },
+   mounted: function() {
+     console.log("getModelPath:"+this.getModelPath());
+   }
 }
 </script>
 

@@ -1,24 +1,47 @@
 <template>
   <div id="app">
-    <Navbar />
-    <router-view/>
+    <Navbar></Navbar>
+    <button @click="gotoHome">gotoHome</button>
+    <button @click="gotoAddModel">gotoAddModel</button>
+    <button @click="gotoModel">gotoModel</button>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue'
-// import axios from 'axios'
+import Navbar from "./components/Navbar.vue";
 
 export default {
-  mounted (){
-  },
-  data() {
-    return {
-      model: null,
-        }
-    },
     components: {
       Navbar
+    },
+    computed: {
+
+    },
+    methods: {
+    onInit()
+    {
+        
+    },
+    gotoHome()
+      {
+        console.log("gotoHome");
+        this.$goRoute("Home",true);
+      },
+    gotoAddModel()
+      {
+      console.log("gotoAddModel");
+        this.$goRoute("AddModel",true);
+      },
+    gotoModel()
+      {
+        console.log("gotoModel");
+        this.$goRoute("Model",true);
+      }
+    },
+    mounted: function() {
+      console.log("===== 【App】 mounted ====");
+      this.onInit();
     }
   }
 </script>

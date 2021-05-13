@@ -1,21 +1,34 @@
 <template>
   <div class="home">
     <h1>AR模型首頁</h1>
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <Model msg="Welcome to Your Vue.js App"/>
-    <model-viewer src="@/armodeldemo/src/assets/models/LittlestTokyo.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls></model-viewer>
+    <Model msg="Welcome to Your Vue.js App" modelKey="LittlestTokyo" ></Model>
+       <Model msg="Welcome to Your Vue.js App" modelKey="LittlestTokyo2" ></Model>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import "@google/model-viewer"
 import Model from '@/components/Model.vue'
 
 export default {
   name: 'Home',
+  data: function() {
+    return {
+      // images: image
+    }
+  },
   components: {
     Model
+  },
+  mounted: function() {
+    console.log("===== Home mounted ====");
+    if (this.$store.state.isInit === false) {
+        this.$goRoute("Init");
+    }
+    this.$store.commit("setCurrentPage", { name: "Home" });
+  },
+  computed:
+  {
+    
   }
 }
 </script>

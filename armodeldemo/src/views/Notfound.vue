@@ -13,5 +13,12 @@ export default {
             this.$router.push({name:'Home'})
         }
     },
+mounted: function() {
+    console.log("===== 404Notfound mounted ====");
+    if (this.$store.state.isInit === false) {
+        this.$goRoute("Init");
+    }
+    this.$store.commit("setCurrentPage", { name: "404Notfound" });
+    }
 }
 </script>
